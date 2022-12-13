@@ -12,8 +12,6 @@ services:
   cachet:
     build:
       context: .
-      args:
-        - cachet_ver=2.4
     ports:
       - 80:8000
     links:
@@ -26,7 +24,7 @@ services:
       - DB_USERNAME=postgres
       - DB_PASSWORD=postgres
       - DB_PREFIX=chq_
-      - APP_KEY=${APP_KEY:-null}
+      - APP_KEY=base64:7yWw2Iz5ZRGflw2f2CiwWR1q0vBrDLv4cjvK128yuBU=
       - APP_LOG=errorlog
       - APP_ENV=${APP_ENV:-production}
       - APP_DEBUG=false

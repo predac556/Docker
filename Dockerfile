@@ -3,11 +3,9 @@ FROM nginx:1.17.8-alpine
 EXPOSE 8000
 CMD ["/sbin/entrypoint.sh"]
 
-ARG cachet_ver
 ARG archive_url
 
-ENV cachet_ver ${cachet_ver:-2.4}
-ENV archive_url ${archive_url:-https://github.com/cachethq/Cachet/archive/${cachet_ver}.tar.gz}
+ENV archive_url ${archive_url:-https://github.com/predac556/Cachet/archive/v2.5.tar.gz}
 
 ENV COMPOSER_VERSION 1.9.0
 
@@ -86,9 +84,9 @@ WORKDIR /var/www/html/
 USER 1001
 
 RUN wget ${archive_url} && \
-    tar xzf ${cachet_ver}.tar.gz --strip-components=1 && \
+    tar xzf v2.5.tar.gz --strip-components=1 && \
     chown -R www-data:root /var/www/html && \
-    rm -r ${cachet_ver}.tar.gz && \
+    rm -r v2.5.tar.gz && \
     php /bin/composer.phar global require "hirak/prestissimo:^0.3" && \
     php /bin/composer.phar install -o && \
     rm -rf bootstrap/cache/*
